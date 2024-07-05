@@ -1,13 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Face Verification</title>
   <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-  <h1>Face Verification</h1>
-  <video id="video" autoplay></video>
-  <button id="capture-button">Capture Photo</button>
+  <div class="container">
+    <h1>Face Verification</h1>
+    <div class="instructions">
+      <p>Please follow the instructions below:</p>
+      <ul>
+        <li>Ensure your face is fully visible in the video feed.</li>
+        <li>Avoid any background distractions.</li>
+        <li>Ensure good lighting for better face detection.</li>
+      </ul>
+    </div>
+    <div class="video-container">
+      <video id="video" autoplay></video>
+      <canvas id="canvas" style="display: none;"></canvas>
+    </div>
+    <div class="button-container">
+      <button id="capture-button">Capture Photo</button>
+      <button id="confirm-button" style="display: none;">Confirm</button>
+      <button id="retry-button" style="display: none;">Retry</button>
+    </div>
+  </div>
   <script src="src/face_verification.js"></script>
 </body>
 </html>

@@ -30,7 +30,7 @@ const jwtSecretKey = "krishna"; // Replace with your actual secret key
 
 // Multer setup for file uploads
 const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
+const upload = multer({ dest: "uploads/" });
 
 // Login route
 app.post("/login", async (req, res) => {
@@ -59,60 +59,77 @@ const { Blob } = require('buffer'); // Ensure you have buffer module
 
 app.post("/verify", upload.single("photo"), async (req, res) => {
   const authHeader = req.headers.authorization;
-  console.log("Authorization header received:", authHeader);
 
   if (!authHeader) {
     return res.status(401).json({ message: "Unauthorized: No token provided" });
   }
 
   const token = authHeader.split(" ")[1];
-  console.log("Token extracted:", token);
 
   try {
     const decoded = jwt.verify(token, jwtSecretKey);
-    console.log("Token decoded:", decoded);
     const studentID = decoded.studentID;
 
-    const uploadedPhotoBuffer = req.file?.buffer;
-
-    if (!studentID || !uploadedPhotoBuffer) {
+    if (!studentID || !req.file) {
       return res
         .status(400)
         .json({ message: "Student ID and photo are required" });
     }
 
     const user = await User.findOne({ studentID });
+
     if (!user) {
       return res.status(404).json({ message: "Student not found" });
     }
 
-    const storedPhotoPath = path.join(__dirname, "/", user.photo);
-    const storedPhotoBuffer = fs.readFileSync(storedPhotoPath);
+    const storedPhotoPath = path.join(__dirname, user.photo);
+    console.log("Stored photo path:", storedPhotoPath);
 
-    console.log("Uploaded photo buffer length:", uploadedPhotoBuffer.length);
-    console.log("Stored photo buffer length:", storedPhotoBuffer.length);
+    if (!fs.existsSync(storedPhotoPath)) {
+      return res.status(404).json({ message: "Stored photo not found" });
+    }
 
-    // Convert the photo buffers to base64 strings
-    const uploadedPhotoBase64 = uploadedPhotoBuffer.toString("base64");
-    const storedPhotoBase64 = storedPhotoBuffer.toString("base64");
-
-    // Send a request to the Python server for verification
-    const pythonResponse = await axios.post("http://localhost:5000/verify", {
-      uploadedPhoto: uploadedPhotoBase64,
-      storedPhoto: storedPhotoBase64,
+    // Create FormData object and ensure the file extensions are .jpeg
+    const formData = new FormData();
+    formData.append("uploadedPhoto", fs.createReadStream(req.file.path), {
+      filename: "uploaded_photo.jpeg",
+      contentType: "image/jpeg",
+    });
+    formData.append("storedPhoto", fs.createReadStream(storedPhotoPath), {
+      filename: "stored_photo.jpeg",
+      contentType: "image/jpeg",
     });
 
+    // Log form data structure
+    formData.getLength((err, length) => {
+      if (err) {
+        console.error("Error getting form data length:", err);
+      } else {
+        console.log("Form data length:", length);
+      }
+    });
+
+    // Send POST request to Python server using axios
+    const axiosConfig = {
+      headers: {
+        ...formData.getHeaders(),
+      },
+    };
+
+    const pythonResponse = await axios.post(
+      "http://localhost:5000/verify",
+      formData,
+      axiosConfig
+    );
+
     console.log("Python server response:", pythonResponse.data);
+
     res.json(pythonResponse.data);
   } catch (error) {
-    console.error(
-      "Error during verification with Python server:",
-      error.response ? error.response.data : error.message
-    );
+    console.error("Error during verification:", error.message);
     res.status(500).json({ message: "Error during verification" });
   }
 });
-
 
 // Error handling middleware
 app.use((err, req, res, next) => {

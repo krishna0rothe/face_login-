@@ -1,49 +1,43 @@
 from flask import Flask, request, jsonify
-from deepface import DeepFace
 import cv2
 import numpy as np
-import base64
+from deepface import DeepFace
+import tempfile
 
 app = Flask(__name__)
 
-def decode_image(base64_str):
+def decode_image(file_storage):
     try:
-        image_data = base64.b64decode(base64_str)
-        np_arr = np.frombuffer(image_data, np.uint8)
-        return cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
+        image_path = tempfile.mktemp(suffix='.jpg')
+        file_storage.save(image_path)
+        image = cv2.imread(image_path)
+        return image
     except Exception as e:
         print(f"Error decoding image: {str(e)}")
         return None
 
 @app.route('/verify', methods=['POST'])
 def verify():
-    data = request.get_json()
-
-    if 'uploadedPhoto' not in data or 'storedPhoto' not in data:
-        return jsonify({"error": "Images not provided"}), 400
-
     try:
-        uploaded_photo = decode_image(data['uploadedPhoto'])
-        stored_photo = decode_image(data['storedPhoto'])
+        uploaded_photo = None
+        stored_photo = None
+        print(request.files)
+        if 'uploadedPhoto' in request.files:
+            uploaded_photo = decode_image(request.files['uploadedPhoto'])
 
-        # Ensure images are correctly read
-        if uploaded_photo is None:
-            return jsonify({"error": "Error decoding uploaded photo"}), 400
-        if stored_photo is None:
-            return jsonify({"error": "Error decoding stored photo"}), 400
+        if 'storedPhoto' in request.files:
+            stored_photo = decode_image(request.files['storedPhoto'])
 
-        # Debug information
-        print("Uploaded photo shape:", uploaded_photo.shape)
-        print("Stored photo shape:", stored_photo.shape)
+        if uploaded_photo is None or stored_photo is None:
+            return jsonify({"error": "Uploaded or stored photo not provided or cannot be decoded"}), 400
 
-        # Perform face verification
-        result = DeepFace.verify(uploaded_photo, stored_photo, model_name='Facenet', enforce_detection=True)
+        result = DeepFace.verify(uploaded_photo, stored_photo, model_name='Facenet', enforce_detection=True, distance_metric='cosine', threshold=0.7)
         verified = result["verified"]
+
         return jsonify({"verified": verified})
+
     except Exception as e:
-        print("Exception:", str(e))  # Print the exact exception message
-        if 'Face could not be detected' in str(e):
-            return jsonify({"error": "No face detected in the uploaded photo"}), 400
+        print("Exception:", str(e))
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
