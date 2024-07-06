@@ -1,16 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Login</title>
-  <link rel="stylesheet" href="styles/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Exam Browser</title>
+    <link rel="stylesheet" href="styles/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Login</h1>
-  <form id="login-form">
-    <input type="text" id="studentID" placeholder="Student ID" required><br>
-    <input type="password" id="password" placeholder="Password" required><br>
-    <button type="submit">Login</button>
-  </form>
-  <script src="src/renderer.js"></script>
+    <div class="container">
+        <div class="card">
+            <header>
+                <h1>Welcome to the Secure Exam Browser</h1>
+                <p>Please enter your details to begin your exam.</p>
+            </header>
+            <main>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="examId">Exam ID</label>
+                        <input type="text" id="examId" name="examId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentId">Student ID</label>
+                        <input type="text" id="studentId" name="studentId" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+                <section class="instructions">
+                    <h2>Instructions:</h2>
+                    <ul>
+                        <li>Ensure you are in a quiet, well-lit room.</li>
+                        <li>Do not use any electronic devices other than this computer during the exam.</li>
+                        <li>Ensure your webcam and microphone are enabled.</li>
+                        <li>Make sure you have a stable internet connection.</li>
+                        <li>Do not refresh or close the browser during the exam.</li>
+                    </ul>
+                </section>
+            </main>
+        </div>
+    </div>
+    <script src="src/renderer.js"></script>
 </body>
 </html>

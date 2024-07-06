@@ -15,6 +15,7 @@
         <li>Ensure your face is fully visible in the video feed.</li>
         <li>Avoid any background distractions.</li>
         <li>Ensure good lighting for better face detection.</li>
+        <li>Blink your eyes to prove liveness.</li>
       </ul>
     </div>
     <div class="video-container">
@@ -26,7 +27,16 @@
       <button id="confirm-button" style="display: none;">Confirm</button>
       <button id="retry-button" style="display: none;">Retry</button>
     </div>
+    <div id="warning" style="color: red; display: none;">Smartphone detected. Please remove the smartphone from the view.</div>
   </div>
+  <div id="popup" class="popup" style="display: none;">
+    <div class="popup-content">
+      <p>Smartphone detected. Please remove the smartphone from the view.</p>
+      <button id="close-popup">Close</button>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
   <script src="src/face_verification.js"></script>
 </body>
 </html>

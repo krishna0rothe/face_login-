@@ -8,16 +8,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
-
-.container {
+    flex-direction: column;
     text-align: center;
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
 }
 
 h1 {
@@ -25,27 +17,46 @@ h1 {
     margin-bottom: 20px;
 }
 
-.instructions {
-    text-align: left;
+p {
+    color: #555;
     margin-bottom: 20px;
 }
 
-.instructions p {
-    font-weight: bold;
+ul {
+    text-align: left;
+    list-style-type: disc;
+    margin: 0;
+    padding-left: 20px;
+    color: #555;
 }
 
-.instructions ul {
-    list-style: disc;
-    padding-left: 20px;
+li {
+    margin-bottom: 10px;
+}
+
+/* Styles for the container */
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
 }
 
 .video-container {
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 20px;
 }
 
-video,
-canvas {
+#video {
+    width: 100%;
+    border: 2px solid #007BFF;
+    border-radius: 5px;
+}
+
+#canvas {
     width: 100%;
     border: 2px solid #007BFF;
     border-radius: 5px;
@@ -63,26 +74,8 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    flex: 1;
-    margin: 0 5px;
 }
 
 button:hover {
     background-color: #0056b3;
-}
-
-#confirm-button {
-    background-color: #28a745;
-}
-
-#confirm-button:hover {
-    background-color: #218838;
-}
-
-#retry-button {
-    background-color: #dc3545;
-}
-
-#retry-button:hover {
-    background-color: #c82333;
 }

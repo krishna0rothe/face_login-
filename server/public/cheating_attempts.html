@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cheating Attempts</title>
+  <link rel="stylesheet" href="cheatingAttempts.css">
+  <script defer src="fetchCheatingAttempts.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Cheating Attempts</h1>
+    <form id="cheatingForm" class="cheating-form">
+      <label for="examID">Exam ID:</label>
+      <input type="text" id="examID" name="examID" required>
+      <label for="studentID">Student ID:</label>
+      <input type="text" id="studentID" name="studentID" required>
+      <button type="submit">Fetch Cheating Attempts</button>
+    </form>
+    <div id="cheatingAttemptsContainer" class="cheating-attempts-container"></div>
+  </div>
+</body>
+</html>
