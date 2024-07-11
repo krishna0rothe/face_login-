@@ -31,6 +31,11 @@ mongoose.connect("mongodb://localhost:27017/exam_proctoring", {
 
 });
 
+const instructorRoutes = require("./routes/instructor");
+app.use("/instructor", instructorRoutes);
+const cheatingAttemptsRouter = require("./routes/cheatingAttempts");
+app.use("/cheating-attempts", cheatingAttemptsRouter);
+
 // JWT secret key
 const jwtSecretKey = "krishna"; // Replace with your actual secret key
 
@@ -217,6 +222,18 @@ app.post("/cheating-attempts", async (req, res) => {
     res.status(500).json({ message: "Error fetching cheating attempts" });
   }
 });
+
+
+
+// Serve instructor signup and login pages
+app.get("/instructor/signup", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "instructor_signup.html"));
+});
+
+app.get("/instructor/login", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "instructor_login.html"));
+});
+
 
 
 

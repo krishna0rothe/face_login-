@@ -4,7 +4,7 @@ const confirmButton = document.getElementById("confirm-button");
 const retryButton = document.getElementById("retry-button");
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
-const threshold = 0.2; // Adjusted threshold for object detection
+const threshold = 0.20; // Adjusted threshold for object detection
 
 let model;
 

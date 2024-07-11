@@ -31,7 +31,8 @@ def verify():
         if uploaded_photo is None or stored_photo is None:
             return jsonify({"error": "Uploaded or stored photo not provided or cannot be decoded"}), 400
 
-        result = DeepFace.verify(uploaded_photo, stored_photo, model_name='Facenet', enforce_detection=True, distance_metric='cosine', threshold=0.7)
+        result = DeepFace.verify(uploaded_photo, stored_photo, model_name='Facenet', enforce_detection=True,
+                                  distance_metric='cosine', threshold=0.7)
         verified = result["verified"]
 
         return jsonify({"verified": verified})

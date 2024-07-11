@@ -11,6 +11,7 @@ document
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${getCookie("jwtToken")}`,
         },
         body: JSON.stringify({ examID, studentID }),
       });
@@ -54,4 +55,11 @@ function displayCheatingAttempts(cheatingAttempts) {
 
     container.appendChild(attemptDiv);
   });
+}
+
+// Helper function to get cookie by name
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(";").shift();
 }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Question</title>
+  <link rel="stylesheet" href="styles/addQuestion.css">
+</head>
+<body>
+  <h1>Add Question</h1>
+  <form id="addQuestionForm">
+    <label for="examID">Exam ID:</label>
+    <input type="text" id="examID" required>
+    <label for="questionText">Question:</label>
+    <input type="text" id="questionText" required>
+    <label for="options">Options (comma separated):</label>
+    <input type="text" id="options" required>
+    <label for="correctOptions">Correct Options (comma separated indices):</label>
+    <input type="text" id="correctOptions" required>
+    <button type="submit">Add Question</button>
+  </form>
+
+  <script src="js/addQuestion.js"></script>
+</body>
+</html>
