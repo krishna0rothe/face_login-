@@ -57,17 +57,17 @@ Welcome to the **Face Login System** project! This Electron.js application ensur
 1. **Start the Python server:**
     ```bash
     cd python
-    python app.py
+    python python_server.py
     ```
 
 2. **Start the Node.js server:**
     ```bash
-    npm start
+    npm run server
     ```
 
 3. **Run the Electron app:**
     ```bash
-    npm run electron
+    npm start
     ```
 
 ## 📂 Project Structure
