@@ -10,7 +10,6 @@ Welcome to the **Face Login System** project! This Electron.js application ensur
 - [💡 Usage](#-usage)
 - [📂 Project Structure](#-project-structure)
 - [🌐 API Endpoints](#-api-endpoints)
-- [🤝 Contributing](#-contributing)
 - [📜 License](#-license)
 
 ## ✨ Features
@@ -27,6 +26,7 @@ Welcome to the **Face Login System** project! This Electron.js application ensur
 - MongoDB
 - Python 3
 - OpenCV
+- DeepFace
 - Flask
 
 ## 🚀 Installation
