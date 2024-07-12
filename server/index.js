@@ -36,7 +36,7 @@ app.use("/instructor", instructorRoutes);
 const cheatingAttemptsRouter = require("./routes/cheatingAttempts");
 app.use("/cheating-attempts", cheatingAttemptsRouter);
 
-// JWT secret key
+// JWT secret key  
 const jwtSecretKey = "krishna"; // Replace with your actual secret key
 
 // Multer setup for file uploads
