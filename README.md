@@ -16,7 +16,6 @@ Welcome to the **Safe Browser Environment for Online Exams** project! This Elect
 - **🔐 Secure Exam Environment**: Full-screen mode with browser restrictions to prevent access to external resources.
 - **📸 Face Verification**: Ensures that the exam is taken by the authorized student.
 - **👁️ Activity Monitoring**: Detects and logs prohibited activities such as screen capture, navigation away from the exam window, and the use of unauthorized applications.
-- **🚫 URL Blocking**: Restricts access to non-exam related websites during the exam.
 - **📝 Exam Module**: Supports various types of questions and tracks exam duration.
 
 ## 🔧 Prerequisites
