@@ -1,0 +1,34 @@
+.exam-results {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.exam-results h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.exam-results p {
+    color: #555;
+    margin: 5px 0;
+}
+
+.exam-results ul {
+    list-style: none;
+    padding: 0;
+}
+
+.exam-results li {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.exam-results li p {
+    margin: 5px 0;
+}

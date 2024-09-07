@@ -1,3 +1,4 @@
+// renderer.js
 document
   .getElementById("loginForm")
   .addEventListener("submit", async (event) => {
@@ -5,7 +6,6 @@ document
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("studentID");
 
-    // Dummy field
     const examId = document.getElementById("examId").value;
     console.log("Exam ID (dummy field):", examId);
 
@@ -13,7 +13,7 @@ document
     const password = document.getElementById("password").value;
 
     try {
-      const response = await fetch("http://localhost:3000/login", {
+      const response = await fetch("http://localhost:5000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -27,6 +27,10 @@ document
         localStorage.setItem("jwtToken", token);
         localStorage.setItem("studentID", studentID);
         console.log("Login successful. Token stored in local storage:", token);
+
+        // Send token to main process
+        window.electronAPI.sendToken(token);
+
         window.location.href = "face_verification.html"; // Redirect to face verification page
       } else {
         const result = await response.text();

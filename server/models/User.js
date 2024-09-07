@@ -5,6 +5,12 @@ const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   password: { type: String, required: true },
   photo: { type: String, required: true },
+  accessibleExams: [
+    {
+      examID: { type: mongoose.Schema.Types.ObjectId, ref: "Exam" },
+      accessCode: { type: String },
+    },
+  ],
 });
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("users", userSchema);

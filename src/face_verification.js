@@ -12,7 +12,7 @@ worker.onmessage = function (event) {
     console.log("Model loaded in worker.");
   } else {
     const predictions = event.data.predictions;
-    console.log("Predictions:", predictions);
+    //console.log("Predictions:", predictions);
 
     const phoneDetected = predictions.some(
       (prediction) =>
@@ -63,8 +63,9 @@ function sendCheatingAttempt(screenshot, type) {
       const formData = new FormData();
       formData.append("screenshot", blob, "screenshot.jpg");
       formData.append("type", type);
+      formData.append("examID", "66a778fd5a309a0b62ba2fd1"); // Hardcoded exam ID
 
-      fetch("http://localhost:3000/cheating-attempts/store", {
+      fetch("http://localhost:5000/cheating-attempts/store", {
         method: "POST",
         body: formData,
         headers: {
@@ -127,7 +128,7 @@ confirmButton.addEventListener("click", async () => {
       formData.append("photo", blob, "photo.jpg");
       console.log("Sending request with token:", token);
 
-      fetch("http://localhost:3000/verify", {
+      fetch("http://localhost:5000/verify", {
         method: "POST",
         body: formData,
         headers: {
@@ -145,7 +146,9 @@ confirmButton.addEventListener("click", async () => {
           return response.json();
         })
         .then((result) => {
-          if (result === true) {
+          console.log("Verification result:", result);
+          if (result.verified === true) {
+            // Check the 'verified' property in the result object
             window.location.href = "verification_success.html"; // Redirect to success page
           } else {
             alert("Verification failed. Not verified, please try again.");

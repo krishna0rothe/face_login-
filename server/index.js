@@ -10,6 +10,8 @@ const multer = require("multer");
 const fs = require("fs");
 const axios = require("axios");
 const FormData = require("form-data");
+const cors = require("cors");
+
 
 
 
@@ -19,6 +21,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(cors());
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
@@ -33,10 +36,19 @@ mongoose.connect("mongodb://localhost:27017/exam_proctoring", {
 
 const instructorRoutes = require("./routes/instructor");
 app.use("/instructor", instructorRoutes);
-const cheatingAttemptsRouter = require("./routes/cheatingAttempts");
-app.use("/cheating-attempts", cheatingAttemptsRouter);
 
-// JWT secret key  
+const cheatingAttemptsRoutes = require("./routes/cheatingAttempts");
+app.use("/api/get/cheating-attempts", cheatingAttemptsRoutes);
+
+
+const examRoutes = require("./routes/examRotues");
+app.use("/api/exams", examRoutes);
+
+const accessRoutes = require("./routes/accessRoutes");
+app.use("/api/access", accessRoutes);
+
+
+// JWT secret key   
 const jwtSecretKey = "krishna"; // Replace with your actual secret key
 
 // Multer setup for file uploads
@@ -130,7 +142,7 @@ app.post("/verify", upload.single("photo"), async (req, res) => {
     };
 
     const pythonResponse = await axios.post(
-      "http://localhost:5000/verify",
+      "http://localhost:8080/verify",
       formData,
       axiosConfig
     );
@@ -168,8 +180,9 @@ app.post(
           .status(400)
           .json({ message: "Student ID not found in token" });
       }
-
-      const { examID = "3333", type } = req.body;
+      console.log("Request body:", req.body);
+      console.log("Request data:", req.data);
+      const { examID, type } = req.body;
       const screenshot = req.file; // Multer's memory storage returns the file as a buffer
 
       if (!screenshot) {
@@ -194,34 +207,6 @@ app.post(
   }
 );
 
-app.get("/cheating_attempts", (req, res) => {
-  console.log("Cheating attempts page requested");
-  res.sendFile(path.join(__dirname, "public", "cheating_attempts.html"));
-});
-
-// Endpoint to fetch cheating attempts by exam ID or student ID
-app.post("/cheating-attempts", async (req, res) => {
-  try {
-    const { examID, studentID } = req.body;
-    
-    // Build the query based on examID or studentID
-    let query = {};
-    if (examID) {
-      query.examID = examID;
-    }
-    if (studentID) {
-      query.studentID = studentID;
-    }
-    
-    // Fetch cheating attempts based on the query
-    const cheatingAttempts = await CheatingAttempt.find(query);
-    
-    res.status(200).json(cheatingAttempts);
-  } catch (error) {
-    console.error("Error fetching cheating attempts:", error);
-    res.status(500).json({ message: "Error fetching cheating attempts" });
-  }
-});
 
 
 
@@ -236,8 +221,6 @@ app.get("/instructor/login", (req, res) => {
 
 
 
-
-
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
@@ -245,7 +228,7 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

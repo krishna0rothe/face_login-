@@ -4,18 +4,73 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Create Exam</title>
-  <link rel="stylesheet" href="styles/createExam.css">
+  <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-  <h1>Create Exam</h1>
-  <form id="createExamForm">
-    <label for="subject">Subject:</label>
-    <input type="text" id="subject" required>
-    <label for="duration">Duration (in minutes):</label>
-    <input type="number" id="duration" required>
-    <button type="submit">Create</button>
-  </form>
+  <div class="container">
+    <h2>Create Exam</h2>
+    <form id="createExamForm">
+      <div class="form-group">
+        <label for="title">Exam Title:</label>
+        <input type="text" id="title" placeholder="Exam Title" required>
+      </div>
+      <div class="form-group">
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" required>
+      </div>
+      <div class="form-group">
+        <label for="startTime">Start Time:</label>
+        <select id="startHour" required></select>
+        <select id="startMinute" required></select>
+        <select id="startAmPm">
+          <option value="AM">AM</option>
+          <option value="PM">PM</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="duration">Duration (minutes):</label>
+        <input type="number" id="duration" placeholder="Duration (minutes)" required>
+      </div>
+      <div class="form-group">
+        <label for="numQuestions">Number of Questions:</label>
+        <input type="number" id="numQuestions" placeholder="Number of Questions" required>
+      </div>
+      <div class="form-group">
+        <label for="marksPerQuestion">Marks per Question:</label>
+        <input type="number" id="marksPerQuestion" placeholder="Marks per Question" required>
+      </div>
+      <div class="form-group">
+        <label for="type">Type:</label>
+        <select id="type">
+          <option value="MCQ" selected>MCQ</option>
+        </select>
+      </div>
+      <div id="calculatedValues">
+        <p id="totalMarks"></p>
+        <p id="examDuration"></p>
+        <p id="timePerQuestion"></p>
+        <p id="endTime"></p>
+      </div>
+      <button type="submit">Create Exam</button>
+    </form>
+  </div>
 
-  <script src="js/createExam.js"></script>
+  <div id="confirmationModal" class="modal">
+    <div class="modal-content">
+      <h3>Confirm Exam Details</h3>
+      <p id="confirmTitle"></p>
+      <p id="confirmStartTime"></p>
+      <p id="confirmEndTime"></p>
+      <p id="confirmDuration"></p>
+      <p id="confirmNumQuestions"></p>
+      <p id="confirmMarksPerQuestion"></p>
+      <p id="confirmTotalMarks"></p>
+      <p id="confirmTimePerQuestion"></p>
+      <button id="confirmCreateExam">Confirm</button>
+      <button id="cancelCreateExam">Cancel</button>
+    </div>
+  </div>
+
+  <script src="./js/createExam.js"></script>
 </body>
 </html>

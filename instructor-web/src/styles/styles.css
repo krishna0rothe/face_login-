@@ -1,0 +1,80 @@
+/* src/styles/styles.css */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+}
+
+.navbar h2 {
+    margin: 0;
+    display: inline-block;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    display: inline-block;
+    margin: 0;
+}
+
+.navbar ul li {
+    display: inline;
+    margin-left: 15px;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.dashboard {
+    display: flex;
+    height: 100vh;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.exam-list {
+    width: 250px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.exam-item {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+}
+
+.exam-item:hover {
+    background-color: #eee;
+}
+
+.exam-details {
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: 20px;
+}
+
+.add-question-form {
+    margin-top: 20px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.option input[type="text"] {
+    margin-right: 10px;
+}

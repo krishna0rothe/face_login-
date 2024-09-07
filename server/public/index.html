@@ -3,12 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exam App</title>
+  <title>Instructor Dashboard</title>
   <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-  <h1>Welcome to the Exam App</h1>
-  <button onclick="location.href='instructor.html'">Instructor Login</button>
-  <button onclick="location.href='studentLogin.html'">Student Login</button>
+  <h2>Instructor Dashboard</h2>
+  <nav>
+    <ul>
+      <li><a href="createExam.html">Create Exam</a></li>
+      <li><a href="results.html">View Results</a></li>
+      <li><a href="performance.html">Student Performance</a></li>
+      <li><a href="exams.html">Past Exams</a></li>
+    </ul>
+  </nav>
+  <div id="dashboardContent"></div>
+  <script src="./js/renderer.js"></script>
 </body>
 </html>

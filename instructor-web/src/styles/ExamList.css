@@ -1,0 +1,98 @@
+.exam-list {
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Space below the header */
+}
+
+.create-exam-button {
+    padding: 10px;
+    border: none;
+    background-color: #28a745; /* Green color for the Create Exam button */
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.create-exam-button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+.exam-summary {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    position: relative; /* This is important for absolute positioning of buttons */
+}
+
+.exam-info {
+    margin-left: 20px;
+    flex-grow: 1; /* This makes sure exam-info takes up the remaining space */
+}
+
+.exam-info h3 {
+    margin: 0 0 10px 0;
+}
+
+.exam-info p {
+    margin: 0 0 10px 0;
+}
+
+.exam-buttons {
+    position: absolute; /* Position buttons absolutely within the exam-summary */
+    right: 15px; /* Distance from the right edge of the container */
+    top: 15px; /* Distance from the top edge of the container */
+    display: flex;
+    gap: 10px;
+    flex-direction: row; /* Align buttons horizontally */
+}
+
+.exam-buttons button {
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.exam-buttons button:hover {
+    background-color: #0056b3;
+}
+
+.exam-details {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.exam-details h3 {
+    margin: 0 0 10px 0;
+}
+
+.exam-details p {
+    margin: 0 0 10px 0;
+}
+
+.exam-details button {
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.exam-details button:hover {
+    background-color: #0056b3;
+}

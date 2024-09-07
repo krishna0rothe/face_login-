@@ -1,6 +1,7 @@
 const { BrowserWindow, dialog, app } = require("electron");
 const path = require("path");
 const { showWarning } = require("./modules/utils/utils");
+const { captureScreenshot } = require("./modules/monitoring/screenshot");
 
 /**
  * Sets up proctoring and detection for the given window.
@@ -13,6 +14,7 @@ function setupProctoring(mainWindow) {
   mainWindow.webContents.on("devtools-opened", () => {
     mainWindow.webContents.closeDevTools();
     showWarning("Developer Tools are disabled.");
+    captureScreenshot("Developer Tools detected!...");
   });
 
   mainWindow.webContents.setWindowOpenHandler(() => {
@@ -43,10 +45,6 @@ function setupProctoring(mainWindow) {
     }
   });
 
-  mainWindow.webContents.on("will-navigate", (e, url) => {
-    e.preventDefault();
-    showWarning("Navigation is disabled.");
-  });
 
   mainWindow.webContents.on("new-window", (e, url) => {
     e.preventDefault();

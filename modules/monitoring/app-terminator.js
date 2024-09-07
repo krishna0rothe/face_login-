@@ -2,6 +2,8 @@ const { exec } = require("child_process");
 const os = require("os");
 const { app } = require("electron");
 const { showWarning, logEvent } = require("../utils/utils");
+const { captureScreenshot } = require("./screenshot");
+
 
 // Array to track the state of each app
 let appStates = {};
@@ -50,6 +52,10 @@ function checkAndTerminateApps() {
           // If app is running and was previously not running, log it and terminate
           if (running && !appStates[appName]) {
             logEvent(`${appName} started running. Terminating...`);
+            showWarning(
+              `The application ${appName} has been detected running. `
+            );
+            captureScreenshot("app running detected!...");
             terminateApp(appName);
           } else if (!running && appStates[appName]) {
             // If app is not running and was previously running, log it

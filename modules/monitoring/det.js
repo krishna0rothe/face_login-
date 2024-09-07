@@ -18,3 +18,6 @@ function monitorScreenCaptureTools(showWarning, quitApp) {
 }
 
 module.exports = { monitorScreenCaptureTools };
+
+
+

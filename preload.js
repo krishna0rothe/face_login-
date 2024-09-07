@@ -1,7 +1,7 @@
-const { contextBridge } = require("electron");
+// preload.js
+const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("electronAPI", {
-  setCookie: (name, value, options) => {
-    document.cookie = `${name}=${value}; ${options}`;
-  },
+  sendToken: (token) => ipcRenderer.send("send-jwt-token", token),
+  onTokenReceived: (callback) => ipcRenderer.on("token-received", callback),
 });

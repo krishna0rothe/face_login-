@@ -1,0 +1,114 @@
+.app {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    /* Ensure no scroll bars appear for the overall app */
+}
+
+.navbar {
+    width: 200px;
+    background-color: black;
+    color: white;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: lightgray;
+    box-sizing: border-box;
+    margin-left: 200px;
+    /* Adjust for the width of the navbar */
+    overflow-y: auto;
+    /* Allow vertical scrolling within main content */
+    padding-top: 60px;
+    /* Adjust for the height of the header */
+}
+
+.header {
+    width: calc(100% - 200px);
+    /* Full width minus the width of the navbar */
+    height: 60px;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 200px;
+    /* Position it next to the navbar */
+    z-index: 1000;
+    /* Ensure it stays on top */
+}
+
+.header-left h1 {
+    margin: 0;
+    padding-left: 10px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.search-container input {
+    padding: 5px 10px;
+    font-size: 1em;
+}
+
+.profile-container {
+    display: flex;
+    align-items: center;
+}
+
+.profile-container img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.exam-list {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.exam-list h2 {
+    color: black;
+}
+
+.exam-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.exam-list li {
+    background-color: lightgray;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.exam-list li h3 {
+    margin: 0;
+}
+
+.exam-list li p {
+    margin: 5px 0;
+}

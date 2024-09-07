@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+#examsContainer {
+    margin: 20px;
+}
+
+#examDetails {
+    margin: 20px;
+}
+
+form div {
+    margin-bottom: 10px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.optionInput {
+    display: flex;
+    align-items: center;
+}
+
+.optionInput .optionText {
+    margin-right: 10px;
+}

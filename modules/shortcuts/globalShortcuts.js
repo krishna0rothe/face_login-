@@ -1,8 +1,10 @@
 const { globalShortcut } = require("electron");
+const { captureScreenshot } = require("../monitoring/screenshot");
 
 function setupGlobalShortcuts(showWarning) {
   globalShortcut.register("CommandOrControl+C", () => {
     showWarning("Copy action is disabled.");
+    captureScreenshot("Copy action detected!...");
   });
   globalShortcut.register("CommandOrControl+X", () => {
     showWarning("Cut action is disabled.");

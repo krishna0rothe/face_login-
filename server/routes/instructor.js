@@ -2,7 +2,7 @@
   const router = express.Router();
   const Instructor = require("../models/Instructor");
   const jwt = require("jsonwebtoken");
-  const authenticateJWT = require("../middleware/authenticateJWT");
+  const authenticateJWT = require("../middleware/auth");
 
   const jwtSecretKey = "krishna"; // Replace with your actual secret key
 
@@ -49,35 +49,26 @@ router.post("/signup", async (req, res) => {
 // Instructor Login Route
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
+  const instructor = await Instructor.findOne({ email, password });
 
-  try {
-    // Check if instructor exists
-    const instructor = await Instructor.findOne({ email });
-
-    if (!instructor) {
-      return res.status(404).json({ message: 'Instructor not found' });
-    }
-
-    // Validate password
-    const isMatch = await bcrypt.compare(password, instructor.password);
-    if (!isMatch) {
-      return res.status(401).json({ message: 'Invalid credentials' });
-    }
-
+  if (instructor) {
     // Generate JWT token
-    const token = jwt.sign({ email: instructor.email }, 'your_jwt_secret_key', { expiresIn: '1h' });
-
-    res.cookie('jwtToken', token, {
+    const token = jwt.sign({ email }, jwtSecretKey, { expiresIn: "1h" });
+    // Set token in cookies or send it in response
+    res.cookie("jwtToken", token, {
       httpOnly: true,
-      sameSite: 'None',
-      secure: false, // Set to true if using https
+      sameSite: "None", // Ensure cookie is sent with cross-site requests
+      secure: false, // Set to true if you're using https
     });
 
-    res.status(200).json({ token });
-  } catch (error) {
-    console.error('Error during instructor login:', error.message);
-    res.status(500).json({ message: 'Server error' });
+    console.log("Login successful. Token generated:", token);
+    res.send({ token }); // Send the token as an object
+  } else {
+    res.status(401).send("Invalid student ID or password");
   }
 });
+
+
+
 
 module.exports = router;

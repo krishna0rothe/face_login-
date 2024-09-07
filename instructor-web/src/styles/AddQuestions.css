@@ -1,0 +1,123 @@
+/* AddQuestions.css */
+
+.add-questions {
+    background-color: #ffffff;
+    /* White background for the main container */
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+h2 {
+    text-align: center;
+    color: #333333;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+p {
+    text-align: center;
+    color: #555555;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.question-block {
+    background-color: #f7f7f7;
+    /* Light gray background for questions */
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    transition: transform 0.2s ease-in-out;
+}
+
+.question-block:hover {
+    transform: translateY(-2px);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    color: #333333;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+    font-size: 14px;
+    color: #333333;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input[type="text"]:focus {
+    border-color: #4caf50;
+    /* Green focus border */
+    outline: none;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-right: 10px;
+    /* Add margin between buttons */
+    margin-left: 10px;
+    /* Add margin between buttons */
+    margin-top: 10px;
+    /* Add margin to separate from content */
+}
+
+.btn:last-child {
+    margin-right: 0;
+    /* Remove margin on the last button */
+}
+
+.add-btn {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.add-btn:hover {
+    background-color: #0056b3;
+}
+
+.submit-btn {
+    background-color: #28a745;
+    color: #ffffff;
+}
+
+.submit-btn:hover {
+    background-color: #218838;
+}

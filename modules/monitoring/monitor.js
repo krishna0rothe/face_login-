@@ -21,18 +21,18 @@ async function initializeMonitoring() {
   await logEvent("Monitoring initialized.");
 
   // Run initial checks once
-  //checkUSBDevices();
+  checkUSBDevices();
   detectDisplays();
   detectNetworkInterfaces();
   detectAudioDevices();
-  detectBluetoothDevices();
+  //detectBluetoothDevices();
   detectVirtualMachine();
 
   // Set interval for periodic checks
   setInterval(() => {
     console.log("Running periodic checks...");
     //checkUSBDevices();
-    detectBluetoothDevices();
+    //detectBluetoothDevices();
     detectVirtualMachine();
   }, 5000); // Check every 5 seconds
 }
@@ -210,25 +210,25 @@ function detectAudioDevices() {
   }
 }
 
-function detectBluetoothDevices() {
-  exec(
-    "hciconfig -a | grep 'UP RUNNING'",
-    (error, stdout, stderr) => {
-      if (error || stderr) {
-        logEvent(`exec error: ${error || stderr}`);
-        return;
-      }
-      const devices = stdout
-        .split("\n")
-        .filter((line) => line.includes("UP RUNNING"));
-      if (devices.length > 0) {
-        logEvent(`Bluetooth devices detected: ${devices.join(", ")}`);
-        console.log(`Bluetooth devices detected: ${devices.join(", ")}`);
-        showWarning("Bluetooth devices are not allowed.");
-      }
-    }
-  );
-  }
+// function detectBluetoothDevices() {
+//   exec(
+//     "hciconfig -a | grep 'UP RUNNING'",
+//     (error, stdout, stderr) => {
+//       if (error || stderr) {
+//         logEvent(`exec error: ${error || stderr}`);
+//         return;
+//       }
+//       const devices = stdout
+//         .split("\n")
+//         .filter((line) => line.includes("UP RUNNING"));
+//       if (devices.length > 0) {
+//         logEvent(`Bluetooth devices detected: ${devices.join(", ")}`);
+//         console.log(`Bluetooth devices detected: ${devices.join(", ")}`);
+//         showWarning("Bluetooth devices are not allowed.");
+//       }
+//     }
+//   );
+//   }
 
 function detectVirtualMachine() {
   if (!virtualMachineDetected) {

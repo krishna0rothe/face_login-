@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instructor Dashboard</title>
+  <link rel="stylesheet" href="styles/exams.css">
+</head>
+<body>
+  <div id="examsContainer">
+    <h2>Your Exams</h2>
+    <div id="examsList"></div>
+  </div>
+
+  <div id="examDetails" style="display: none;">
+    <h2>Exam Details</h2>
+    <div id="examInfo"></div>
+    <button id="addQuestionBtn">Add Question</button>
+    <form id="addQuestionForm" style="display: none;">
+      <div>
+        <label for="questionText">Question Text:</label>
+        <input type="text" id="questionText">
+      </div>
+      <div id="optionsContainer"></div>
+      <button type="button" id="addOptionBtn">Add Option</button>
+      <button type="submit">Save Question</button>
+    </form>
+  </div>
+
+  <script src="./js/exams.js"></script>
+</body>
+</html>

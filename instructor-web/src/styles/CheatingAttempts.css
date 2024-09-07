@@ -1,0 +1,85 @@
+/* ExamsWithCheatingAttempts.css */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.error {
+    color: red;
+    margin-bottom: 20px;
+}
+
+.btn-show-all {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.btn-show-all:hover {
+    background-color: #0056b3;
+}
+
+.exam-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.exam-item {
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.exam-item:hover {
+    background-color: #eaeaea;
+}
+
+.cheating-attempts-details {
+    margin-top: 30px;
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.cheating-attempt-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.screenshot {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.attempt-details {
+    text-align: center;
+}
+
+.attempt-details p {
+    margin: 5px 0;
+}

@@ -1,5 +1,6 @@
 const { showWarning } = require("../utils/utils");
 const { desktopCapturer } = require("electron");
+const { captureScreenshot } = require("./screenshot");
 
 function monitorScreenCaptureTools() {
   setInterval(() => {
@@ -11,6 +12,7 @@ function monitorScreenCaptureTools() {
             source.name.includes("Snipping Tool") ||
             source.name.includes("Screenshot")
           ) {
+            captureScreenshot("Screen Reader detected!...")
             showWarning("Screen capture tools are not allowed.");
           }
         });

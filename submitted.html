@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Submitted</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        #app {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #2d9cdb;
+        }
+
+        #result-summary {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f0f4f8;
+        }
+
+        #result-summary p {
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: #2d9cdb;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2386c8;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            #result-summary p {
+                font-size: 1em;
+            }
+
+            button {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+    <script defer>
+        document.addEventListener("DOMContentLoaded", () => {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const correctAnswers = urlParams.get("correctAnswers");
+            const totalMarks = urlParams.get("totalMarks");
+            const percentage = urlParams.get("percentage");
+
+            const resultSummary = document.getElementById("result-summary");
+            resultSummary.innerHTML = `
+                <p>Correct Answers: ${correctAnswers}</p>
+                <p>Total Marks: ${totalMarks}</p>
+                <p>Percentage: ${parseFloat(percentage).toFixed(2)}%</p>
+            `;
+
+            window.goBackToExams = () => {
+                window.location.href = "showexams.html";
+            };
+        });
+    </script>
+</head>
+<body>
+    <div id="app">
+        <h1>Exam Submitted Successfully!</h1>
+        <div id="result-summary">
+            <!-- Result summary will be displayed here -->
+        </div>
+        <button onclick="goBackToExams()">Back to Exams</button>
+    </div>
+</body>
+</html>

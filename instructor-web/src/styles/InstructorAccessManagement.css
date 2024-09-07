@@ -1,0 +1,48 @@
+.instructor-access-management {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.exam-selection,
+.student-selection {
+    margin-bottom: 20px;
+}
+
+select {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.student-selection {
+    display: flex;
+    flex-direction: column;
+}
+
+.student-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.student-item input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

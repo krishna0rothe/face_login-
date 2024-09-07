@@ -1,0 +1,30 @@
+<!-- exam.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Take Exam</title>
+  <link rel="stylesheet" href="styles/exam.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Webcam feed video -->
+    <div id="webcam-container">
+      <video id="video" autoplay muted playsinline></video>
+      <canvas id="canvas" style="display:none;"></canvas>
+    </div>
+
+    <!-- Question container -->
+    <div id="question-container"></div>
+
+    <!-- Navigation buttons -->
+    <div class="navigation-buttons">
+      <button id="prev-btn" onclick="prevQuestion()">Previous</button>
+      <button id="next-btn" onclick="nextQuestion()">Next</button>
+      <button id="submit-btn" onclick="submitExam()">Submit</button>
+    </div>
+  </div>
+  <script src="src/exam.js"></script>
+</body>
+</html>

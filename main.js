@@ -8,16 +8,25 @@ const {
 } = require("electron");
 const path = require("path");
 
-const {startKeyboardMonitoring,} = require("./modules/monitoring/keyboard-monitor");
-const {checkAndTerminateApps} = require("./modules/monitoring/app-terminator");
+const {
+  startKeyboardMonitoring,
+} = require("./modules/monitoring/keyboard-monitor");
+const {
+  checkAndTerminateApps,
+} = require("./modules/monitoring/app-terminator");
 const { initializeMonitoring } = require("./modules/monitoring/monitor");
 const { showWarning } = require("./modules/utils/utils");
 const { fetchAndStoreIP } = require("./modules/monitoring/ipConfig");
-const {logSystemSpecifications} = require("./modules/monitoring/logSystemSpecifications");
+const {
+  logSystemSpecifications,
+} = require("./modules/monitoring/logSystemSpecifications");
 const { setupGlobalShortcuts } = require("./modules/shortcuts/globalShortcuts");
-const {monitorScreenCaptureTools} = require("./modules/monitoring/screenCaptureMonitor");
+const {
+  monitorScreenCaptureTools,
+} = require("./modules/monitoring/screenCaptureMonitor");
 const { blockURLs } = require("./modules/session/urlBlocker");
 const { setupProctoring } = require("./window");
+const jwtHandler = require("./modules/jwtHandler");
 
 let mainWindow;
 
@@ -39,17 +48,17 @@ function createWindow() {
 app.whenReady().then(() => {
   createWindow();
 
-  fetchAndStoreIP();
+  //fetchAndStoreIP();
   logSystemSpecifications();
-  initializeMonitoring();
-
-  //setupGlobalShortcuts(showWarning);
-
-  monitorScreenCaptureTools(showWarning , app.quit);
-
-  //startKeyboardMonitoring();
- checkAndTerminateApps();
   //initializeMonitoring();
+
+  setupGlobalShortcuts(showWarning);
+
+  monitorScreenCaptureTools(showWarning, app.quit);
+
+  startKeyboardMonitoring();
+  checkAndTerminateApps();
+  initializeMonitoring();
 
   //blockURLs(session);
 
@@ -60,4 +69,11 @@ app.whenReady().then(() => {
 
 app.on("window-all-closed", function () {
   if (process.platform !== "darwin") app.quit();
+});
+
+ipcMain.on("send-jwt-token", (event, token) => {
+  jwtHandler.setJwtToken(token);
+  console.log("Received JWT token in main process:", token);
+  // Optionally, send a confirmation back to the renderer process
+  mainWindow.webContents.send("token-received", "Token received successfully");
 });

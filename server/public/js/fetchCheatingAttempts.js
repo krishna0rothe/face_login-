@@ -36,10 +36,9 @@ function displayCheatingAttempts(cheatingAttempts) {
     attemptDiv.className = "cheating-attempt";
 
     const img = new Image();
-    const base64String = btoa(
-      String.fromCharCode(...new Uint8Array(attempt.screenshot.data))
-    );
-    img.src = `data:image/jpeg;base64,${base64String}`;
+    img.src = `data:image/jpeg;base64,${arrayBufferToBase64(
+      attempt.screenshot.data
+    )}`;
     attemptDiv.appendChild(img);
 
     const info = document.createElement("div");
@@ -55,6 +54,17 @@ function displayCheatingAttempts(cheatingAttempts) {
 
     container.appendChild(attemptDiv);
   });
+}
+
+// Helper function to convert ArrayBuffer to Base64
+function arrayBufferToBase64(buffer) {
+  let binary = "";
+  const bytes = new Uint8Array(buffer);
+  const len = bytes.byteLength;
+  for (let i = 0; i < len; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return window.btoa(binary);
 }
 
 // Helper function to get cookie by name
